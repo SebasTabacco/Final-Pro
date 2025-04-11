@@ -1,8 +1,105 @@
-body {
-  padding: 50px;
-  font: 14px "Lucida Grande", Helvetica, Arial, sans-serif;
+/* Reset */
+body,
+h1,
+p,
+ul,
+li,
+a {
+  margin: 0;
+  padding: 0;
+  text-decoration: none;
+  list-style: none;
+  box-sizing: border-box;
 }
 
-a {
-  color: #00B7FF;
+/* General */
+body {
+  color: darkgoldenrod;
+  /*background-image: url("/image/body/body0.avif"); /* Asegúrate de usar la ruta correcta */
+  /*background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
+  /*background-repeat: no-repeat; /* Evita que la imagen se repita */
+  /*background-position: center; /* Centra la imagen */
+  height: 100vh; /* Ajusta el alto al 100% del viewport */
+  margin: 0; /* Elimina cualquier margen adicional */
+  padding: 0; /* Elimina el padding */
+}
+
+/* Header */
+header {
+  background-color: #333;
+  color: white;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  padding: 10px 20px;
+}
+
+/* Menú horizontal */
+nav ul {
+  display: flex; /* Coloca los elementos uno al lado del otro */
+  gap: 15px; /* Espaciado entre los elementos del menú */
+  justify-content: center; /* Opcional: centra todo el menú horizontalmente */
+  list-style: none; /* Elimina los puntos de la lista */
+  padding: 0;
+  margin: 0;
+}
+
+nav ul li a {
+  color: rgba(212, 209, 7, 0.76); /* Color del texto */
+  text-decoration: none; /* Elimina el subrayado */
+  padding: 10px 15px; /* Espaciado interno de los enlaces */
+  border: 1px solid white; /* Borde para los enlaces */
+  border-radius: 5px; /* Bordes redondeados */
+  transition: background-color 0.3s ease; /* Efecto de hover */
+}
+
+nav ul li a:hover {
+  background-color: white;
+  color: #333;
+}
+
+/* Login Icon */
+nav ul li a[href="/login"]::before {
+  content: "🔒";
+  margin-right: 5px;
+}
+
+/* Footer */
+footer {
+  background-color: #333;
+  color: rgb(16, 240, 229);
+  text-align: center;
+  padding: 15px;
+  position: absolute;
+  bottom: 0;
+  width: 100%;
+}
+
+footer p {
+  margin-bottom: 10px;
+}
+
+footer ul {
+  display: flex;
+  justify-content: center;
+  gap: 15px;
+}
+
+footer ul li a {
+  color: white;
+  font-size: 20px;
+}
+
+/* Icons */
+footer ul li a.instagram::before {
+  content: "📸";
+}
+footer ul li a.facebook::before {
+  content: "📘";
+}
+footer ul li a.skype::before {
+  content: "💻";
+}
+footer ul li a.youtube::before {
+  content: "📹";
 }
