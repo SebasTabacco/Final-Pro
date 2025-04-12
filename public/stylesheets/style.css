@@ -103,3 +103,7 @@ footer ul li a.skype::before {
 footer ul li a.youtube::before {
   content: "📹";
 }
+img {
+  border: 1px solid magenta;
+  border-radius: 35%;
+}

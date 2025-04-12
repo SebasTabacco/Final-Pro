@@ -1,21 +1,23 @@
-<h1>Ahora estamos Listos aqui esta mi Login</h1>
-<div class="container mt-5">
-    <h3 class="text-center">Inicio de Sesión</h3>
-    {{#if error}}
-    <p class="text-danger">Usuario y/o Contraseña Incorrectos</p>
-    {{/if}}
-    <form method="POST" action="/login">
-        <div class="mb-3">
-            <label for="usuario" class="form-label">Usuario</label>
-            <input type="text" class="form-control" id="usuario" name="usuario" required>
-        </div>
-        <div class="mb-3">
-            <label for="password" class="form-label">Contraseña</label>
-            <input type="password" class="form-control" id="password" name="password" required>
-        </div>
-        <button type="submit" class="btn btn-primary">Iniciar Sesión</button>
-    </form>
-    {{#if error}}
-    <p class="text-danger mt-3">Usuario y/o Contraseña Incorrectos</p>
-    {{/if}}
+<h1>Ahora estamos Listos Desarrollo & Hosting Web</h1>
+<div class="login-container">
+  <h2>Iniciar Sesión</h2>
+ 
+  <form method="post" action="/admin/login">
+    <div>
+      <label>Usuario:</label>
+      <input type="text" name="usuario" required>
+    </div>
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" name="password" required>
+    </div>
+    <div>
+      <button type="submit">Entrar</button>
+    </div>
+  </form>
+   {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
 </div>
+
+ 

@@ -1,11 +1,21 @@
+// routes/admin/novedades.js
 var express = require('express');
 var router = express.Router();
 
+// Middleware que verifica si existe sesión activa
+function auth(req, res, next) {
+  if (req.session && req.session.loggedin) {
+    next();
+  } else {
+    res.redirect('/admin/login');
+  }
+}
 
-/* GET home page. */
-router.get('/', function(req, res, next) {
-    res.render('admin/novedades', {//login.hbs
-      layout:'admin/layout' //layout.hbs
+// Ruta para mostrar novedades (protegida)
+router.get('/', auth, (req, res) => {
+  res.render('admin/novedades', {
+    layout: 'admin/layout',
+    usuario: req.session.usuario
   });
 });
 
