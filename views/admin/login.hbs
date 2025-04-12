@@ -1,23 +1,30 @@
-<h1>Ahora estamos Listos Desarrollo & Hosting Web</h1>
-<div class="login-container">
-  <h2>Iniciar Sesión</h2>
- 
-  <form method="post" action="/admin/login">
-    <div>
-      <label>Usuario:</label>
-      <input type="text" name="usuario" required>
-    </div>
-    <div>
-      <label>Contraseña:</label>
-      <input type="password" name="password" required>
-    </div>
-    <div>
-      <button type="submit">Entrar</button>
-    </div>
-  </form>
-   {{#if error}}
-    <p class="error">{{error}}</p>
-  {{/if}}
+<div class="login-icon" onclick="expandLogin()">
+    <img src="https://tse2.mm.bing.net/th?id=OIG2.sJYXxO02M9ByXb1QaGis&pid=ImgGn" alt="Sesión" width="100" height="70">
+
 </div>
+<div class="login-container" id="login-container">
+    <h2>Iniciar Sesión</h2>
+    <form method="post" action="/admin/login">
+        <div>
+            <label>Usuario:</label>
+            <input type="text" name="usuario" required>
+        </div>
+        <div>
+            <label>Contraseña:</label>
+            <input type="password" name="password" required>
+        </div>
+        <div>
+            <button type="submit">Entrar</button>
+        </div>
+    </form>
+    {{#if error}}
+        <p class="error">{{error}}</p>
+    {{/if}}
+</div>
+
+
+
+
+
 
  

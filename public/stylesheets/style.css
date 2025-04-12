@@ -11,57 +11,59 @@ a {
   list-style: none;
   box-sizing: border-box;
 }
-
 /* General */
 body {
-  color: darkgoldenrod;
-  /*background-image: url("/image/body/body0.avif"); /* Asegúrate de usar la ruta correcta */
-  /*background-size: cover; /* Ajusta la imagen para que cubra toda la pantalla */
-  /*background-repeat: no-repeat; /* Evita que la imagen se repita */
-  /*background-position: center; /* Centra la imagen */
-  height: 100vh; /* Ajusta el alto al 100% del viewport */
-  margin: 0; /* Elimina cualquier margen adicional */
-  padding: 0; /* Elimina el padding */
-}
-
-/* Header */
-header {
-  background-color: #333;
-  color: white;
-  display: flex;
-  justify-content: space-between;
-  align-items: center;
-  padding: 10px 20px;
-}
-
-/* Menú horizontal */
-nav ul {
-  display: flex; /* Coloca los elementos uno al lado del otro */
-  gap: 15px; /* Espaciado entre los elementos del menú */
-  justify-content: center; /* Opcional: centra todo el menú horizontalmente */
-  list-style: none; /* Elimina los puntos de la lista */
+  height: 100vh;
+  margin: 0;
   padding: 0;
+}
+/* Estilo general del header */
+header {
+  background-color: #444343;
+}
+/* Contenedor del nav */
+nav {
+  display: flex;
+  /*  organizar los elementos */
+  justify-content: center;
+  justify-content: center;
+}
+/* Lista del menú */
+nav ul {
+  display: flex;
+  /* Cambia los ítems de la lista a disposición horizontal */
+  list-style: none;
+  /* Elimina los puntos de la lista */
+  gap: 20px;
+  /* Espaciado entre cada elemento del menú */
+  padding: 10px;
   margin: 0;
 }
 
+/* Enlaces del menú */
 nav ul li a {
-  color: rgba(212, 209, 7, 0.76); /* Color del texto */
-  text-decoration: none; /* Elimina el subrayado */
-  padding: 10px 15px; /* Espaciado interno de los enlaces */
-  border: 1px solid white; /* Borde para los enlaces */
-  border-radius: 5px; /* Bordes redondeados */
-  transition: background-color 0.3s ease; /* Efecto de hover */
+  text-decoration: none;
+  /* Elimina el subrayado */
+  font-size: 1em;
+  /* Tamaño de letra (ajusta según lo necesites) */
+  font-weight: bold;
+  /* Resalta los textos */
+  color: darkorange;
+  /* Color del texto */
+  padding: 10px 20px;
+  /* Espaciado interno */
+  transition: all 0.3s ease;
+  /* Transición suave en el hover */
 }
 
+/* Hover efecto */
 nav ul li a:hover {
-  background-color: white;
-  color: #333;
-}
-
-/* Login Icon */
-nav ul li a[href="/login"]::before {
-  content: "🔒";
-  margin-right: 5px;
+  background-color: #007bff;
+  /* Fondo azul al pasar el mouse */
+  color: rgb(243, 250, 250);
+  /* Texto blanco en el hover */
+  border-color: #0056b3;
+  /* Cambia el color del borde en el hover */
 }
 
 /* Footer */
@@ -94,16 +96,38 @@ footer ul li a {
 footer ul li a.instagram::before {
   content: "📸";
 }
+
 footer ul li a.facebook::before {
   content: "📘";
 }
+
 footer ul li a.skype::before {
   content: "💻";
 }
+
 footer ul li a.youtube::before {
   content: "📹";
 }
-img {
-  border: 1px solid magenta;
-  border-radius: 35%;
+.login-container {
+  display: none;
+  transition: opacity 0.5s ease, transform 0.5s ease;
+  opacity: 0;
+  transform: scale(0.9);
+}
+
+.login-container.expanded {
+  display: block;
+  opacity: 1;
+  transform: scale(1);
+  background: #ffffff; /* Fondo blanco opcional */
+  padding: 20px;
+  border-radius: 10px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Efecto de sombra */
+}
+
+.login-icon {
+  cursor: pointer;
+  width: 50px;
+  height: 50px;
+  margin-bottom: 10px;
 }
