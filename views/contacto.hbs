@@ -1,0 +1,86 @@
+{{!-- views/contacto.hbs --}}
+
+<head>
+  <title>{{title}}</title>
+  <link href="/stylesheets/registro.css" rel="stylesheet">
+</head>
+<section>
+  <h1>Registro</h1>
+  <form class="registro-form" action="/registro" method="POST">
+    <div>
+      <label for="inputName" class="form-label">Nombre</label>
+      <input type="text" name="name" class="form-control" id="inputName" required>
+    </div>
+    <div>
+      <label for="inputSurname" class="form-label">Apellido</label>
+      <input type="text" name="surname" class="form-control" id="inputSurname" required>
+    </div>
+    <div>
+      <label for="inputEmail" class="form-label">Correo Electrónico</label>
+      <input type="email" name="email" class="form-control" id="inputEmail" required>
+    </div>
+    <div>
+      <label for="inputLocalidad" class="form-label">Localidad</label>
+      <input type="text" name="localidad" class="form-control" id="inputLocalidad" required>
+    </div>
+    <div>
+      <label for="inputZip" class="form-label">Código Postal</label>
+      <input type="text" name="zipcode" class="form-control" id="inputZip" required>
+    </div>
+    <div>
+      <label for="inputPhone" class="form-label">Teléfono</label>
+      <input type="tel" name="phone" class="form-control" id="inputPhone" required>
+    </div>
+    <div>
+      <label for="inputConsulta" class="form-label">Consulta</label>
+      <textarea name="consulta" class="form-control" id="inputConsulta" rows="4" required></textarea>
+    </div>
+    <div>
+      <button type="submit" class="btn btn-primary">Enviar</button>
+    </div>
+  </form>
+</section>
+<section>
+  <h1>Ubicación</h1>
+  <div class="map-container">
+    <iframe
+      src="https://www.google.com/maps/embed?pb=!1m18!1m12!1m3!1d4257.218303301863!2d-65.01873642355108!3d-32.347740373845994!2m3!1f0!2f0!3f0!3m2!1i1024!2i768!4f13.1!3m3!1m2!1s0x95d2e1ef3ebb389d%3A0xca02b7750430a491!2sMerlo%20-%20San%20Lu%C3%ADs!5e1!3m2!1ses-419!2sar!4v1744513613756!5m2!1ses-419!2sar"
+      width="600" height="450" style="border:0;" allowfullscreen="" loading="lazy"
+      referrerpolicy="no-referrer-when-downgrade"></iframe>
+  </div>
+</section>
+<section>
+  <h1>Información de Contacto</h1>
+  <div class="contact-info">
+    <div>
+      <i class="fas fa-phone"></i>
+      <p>Teléfonos:</p>
+      <ul>
+        <li><a href="tel:+541123456789">+54 11 2345 6789 (Central)</a></li>
+        <li><a href="tel:+541198765432">+54 11 9876 5432 (Emergencias)</a></li>
+      </ul>
+    </div>
+    <div>
+      <i class="fas fa-envelope"></i>
+      <p>Correos Electrónicos:</p>
+      <ul>
+        <li><a href="mailto:contacto@empresa.com">contacto@empresa.com</a></li>
+        <li><a href="mailto:soporte@empresa.com">soporte@empresa.com</a></li>
+      </ul>
+    </div>
+    <div>
+      <i class="fas fa-users"></i>
+      <p>Recursos Humanos:</p>
+      <ul>
+        <li><a href="mailto:rrhh@empresa.com">rrhh@empresa.com</a></li>
+      </ul>
+    </div>
+    <div>
+      <i class="fas fa-bullhorn"></i>
+      <p>Marketing:</p>
+      <ul>
+        <li><a href="mailto:marketing@empresa.com">marketing@empresa.com</a></li>
+      </ul>
+    </div>
+  </div>
+</section>

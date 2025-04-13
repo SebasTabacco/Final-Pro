@@ -1,22 +1,3 @@
-/* Reset */
-body,
-h1,
-p,
-ul,
-li,
-a {
-  margin: 0;
-  padding: 0;
-  text-decoration: none;
-  list-style: none;
-  box-sizing: border-box;
-}
-/* General */
-body {
-  height: 100vh;
-  margin: 0;
-  padding: 0;
-}
 /* Estilo general del header */
 header {
   background-color: #444343;
@@ -65,48 +46,89 @@ nav ul li a:hover {
   border-color: #0056b3;
   /* Cambia el color del borde en el hover */
 }
+body {
+  background-image: url("/image/login/log1.jpg");
+  background-size: 50% 50%; /* Ajusta la imagen para cubrir toda la pantalla */
+  background-repeat: repeat; /* Evita la repetición de la imagen */
+  /*background-position: center center; /* Centra la imagen */
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; /* Altura mínima igual al 100% de la ventana */
+}
 
-/* Footer */
+section {
+  flex: 1; /* Toma el espacio restante entre header y footer */
+}
+
 footer {
-  background-color: #333;
-  color: rgb(16, 240, 229);
+  background-color: #555;
+  color: #33d1e6;
   text-align: center;
-  padding: 15px;
-  position: absolute;
+  padding: 20px;
+  position: relative; /* Cambia de "absolute" a "relative" */
   bottom: 0;
   width: 100%;
 }
+section {
+  margin-bottom: 40px; /* Espaciado entre el contenedor y el footer */
+}
+@media (max-width: 480px) {
+  section {
+    margin-bottom: 20px; /* Reduce el margen inferior en pantallas pequeñas */
+  }
 
+  footer {
+    padding: 10px; /* Reduce el padding del footer */
+    font-size: 14px; /* Ajusta el tamaño de fuente en el footer */
+  }
+}
+
+/* Footer */
 footer p {
-  margin-bottom: 10px;
+  margin-bottom: 15px; /* Espaciado ajustado */
 }
 
 footer ul {
   display: flex;
   justify-content: center;
-  gap: 15px;
+  gap: 20px; /* Espaciado entre íconos ajustado */
 }
 
 footer ul li a {
-  color: white;
-  font-size: 20px;
+  color: #46dcf0; /* Color blanco para visibilidad */
+  font-size: 24px; /* Tamaño ajustado */
+  display: inline-block; /* Asegura que el ícono se renderice */
+  text-decoration: none;
 }
 
-/* Icons */
+footer ul li a:hover {
+  color: #de2cee; /* Color más claro al pasar el mouse */
+}
+
+/* Íconos modernos */
 footer ul li a.instagram::before {
-  content: "📸";
+  content: "\f16d"; /* Ícono Instagram */
 }
 
 footer ul li a.facebook::before {
-  content: "📘";
+  content: "\f09a"; /* Ícono Facebook */
 }
 
 footer ul li a.skype::before {
-  content: "💻";
+  content: "\f17e"; /* Ícono Skype */
 }
 
 footer ul li a.youtube::before {
-  content: "📹";
+  content: "\f16a"; /* Ícono YouTube */
+}
+
+/* Ajustes generales */
+footer ul li a::before {
+  font-family: "Font Awesome 5 Free"; /* Asegura la familia de íconos */
+  font-weight: 900; /* Estilo en negrita */
+  font-size: 20px; /* Tamaño ajustado */
+  color: #c544df; /* Color blanco */
+  display: inline-block; /* Asegura la visibilidad */
 }
 .login-container {
   display: none;
@@ -114,20 +136,245 @@ footer ul li a.youtube::before {
   opacity: 0;
   transform: scale(0.9);
 }
-
 .login-container.expanded {
   display: block;
   opacity: 1;
   transform: scale(1);
-  background: #ffffff; /* Fondo blanco opcional */
-  padding: 20px;
-  border-radius: 10px;
-  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1); /* Efecto de sombra */
+  background: #24a6aa; /* Fondo del contenedor */
+  padding: 10px; /* Espaciado interno */
+  border-radius: 8px; /* Bordes redondeados más compactos */
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
+  width: 300px; /* Ancho fijo para hacerlo más pequeño */
+  max-width: 90%; /* Asegura que se adapte en pantallas pequeñas */
+  margin: 0 auto; /* Centra el contenedor */
+  text-align: center; /* Centra el texto internamente */
 }
 
 .login-icon {
   cursor: pointer;
   width: 50px;
   height: 50px;
+  margin-bottom: 40px;
+}
+/* Estilos generales para el formulario */
+section {
+  background-color: gray;
+  padding: 5px;
+  /*border: 2px solid magenta;*/
+  border-radius: 20px;
+  box-shadow: 3px 3px 10px rgba(45, 140, 143, 0.1);
+  width: 750px;
+  margin: 10px auto;
+}
+
+h1 {
+  font-family: "Arial", sans-serif;
+  color: #d8d668;
+  text-align: center;
+  font-size: 26px;
+  margin-bottom: 20px;
+}
+
+.registro-form {
+  display: flex;
+  flex-direction: column;
+  gap: 15px;
+}
+
+.form-label {
+  font-weight: bold;
+  color: #160b16;
+}
+
+.form-control {
+  width: 90%;
+  padding: 10px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+  font-size: 10px;
+}
+
+textarea.form-control {
+  resize: none;
+}
+
+.btn {
+  background-color: #007bff;
+  color: #772b77;
+  border: none;
+  border-radius: 4px;
+  padding: 10px 15px;
+  cursor: pointer;
+}
+
+.btn:hover {
+  background-color: #1f948e;
+}
+.error-message {
+  color: #ff0000;
+  font-size: 12px;
+  margin-top: 5px;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  section {
+    padding: 15px;
+  }
+}
+/*ubicacion mapa*/
+.map-container {
+  width: 100%;
+  max-width: 800px;
+  margin: 20px auto; /* Centrar el mapa */
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
+  border-radius: 8px; /* Bordes redondeados */
+  overflow: hidden; /* Asegura que los bordes se vean redondeados */
+}
+
+iframe {
+  width: 100%;
+  height: 400px; /* Altura del mapa */
+  border: none; /* Elimina el borde del iframe */
+}
+/*contacto utiles*/
+.contact-info {
+  display: grid;
+  grid-template-columns: repeat(
+    auto-fit,
+    minmax(250px, 1fr)
+  ); /* Diseño de columnas responsivo */
+  gap: 20px;
+  padding: 20px;
+  background-color: #f4f4f4;
+  border-radius: 8px;
+  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
+  margin: 20px auto;
+  max-width: 800px;
+}
+
+.contact-info div {
+  background-color: #ffffff;
+  border-radius: 8px;
+  padding: 15px;
+  text-align: center;
+  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease;
+}
+
+.contact-info div:hover {
+  transform: translateY(-5px);
+  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+}
+
+.contact-info i {
+  font-size: 30px;
+  color: #007bff;
   margin-bottom: 10px;
+}
+
+.contact-info p {
+  font-weight: bold;
+  color: #333;
+  margin: 10px 0;
+}
+
+.contact-info ul {
+  list-style: none;
+  padding: 0;
+}
+
+.contact-info ul li {
+  margin: 5px 0;
+}
+
+.contact-info ul li a {
+  text-decoration: none;
+  color: #007bff;
+  font-size: 14px;
+  transition: color 0.3s ease;
+}
+
+.contact-info ul li a:hover {
+  color: #0056b3;
+}
+
+/* Diseño responsivo */
+@media (max-width: 768px) {
+  .contact-info {
+    grid-template-columns: 1fr;
+  }
+}
+/*contenedores noticias*/
+.news-container {
+  /*background-color: #f4f4f4;*/
+  padding: 20px;
+  border-radius: 8px;
+  margin: 20px auto;
+  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
+  max-width: 900px;
+  text-align: center;
+}
+
+.news-container h2 {
+  color: #333;
+  font-size: 20px;
+  margin-bottom: 10px;
+}
+
+.news-container marquee span {
+  font-weight: bold;
+  color: #007bff;
+  margin-right: 20px;
+}
+/*contenedor carrussell*/
+#carousel-section {
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.carousel-inner img {
+  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
+  height: auto; /* Mantiene la proporción original de la imagen */
+  object-fit: contain; /* Evita deformaciones si la imagen no ocupa todo el contenedor */
+  border-radius: 8px; /* Bordes redondeados */
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  /* background-color: rgba(0, 0, 0, 0.5);*/
+  border-radius: 50%;
+}
+
+/*contenedor divisas*/
+#carousel-section {
+  margin: 40px auto;
+  max-width: 1200px;
+}
+
+.carousel-inner img {
+  height: 500px;
+  object-fit: cover; /* Asegura que las imágenes se vean bien */
+  border-radius: 8px;
+}
+
+.carousel-control-prev-icon,
+.carousel-control-next-icon {
+  background-color: rgba(0, 0, 0, 0.5);
+  border-radius: 50%;
+}
+/*confi-video*/
+.video-container {
+  max-width: 100%;
+  text-align: center;
+  margin: 20px auto;
+}
+
+/* Opcional: para un video responsive */
+.video-container iframe,
+.video-container video {
+  width: 100%;
+  height: auto;
+  max-width: 840px; /* O el valor que desees */
+  margin: 20%;
 }

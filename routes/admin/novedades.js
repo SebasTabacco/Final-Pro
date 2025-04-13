@@ -15,6 +15,7 @@ function auth(req, res, next) {
 router.get('/', auth, (req, res) => {
   res.render('admin/novedades', {
     layout: 'admin/layout',
+    hideNav: true,
     usuario: req.session.usuario
   });
 });
