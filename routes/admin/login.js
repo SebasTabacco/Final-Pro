@@ -5,8 +5,8 @@ var usuariosModel = require('./../../models/usuariosModel');
 
 /* Muestra el formulario de login */
 router.get('/', function(req, res) {
-  res.render('admin/login', {
-      layout: 'admin/layout'
+  res.render('partials/login', {//me lee views
+    layout: 'admin/layout'
   });
 });
 
@@ -26,13 +26,23 @@ router.post('/', async (req, res, next) => {
       req.session.loggedin = true;
       req.session.usuario = usuario;
       
-      res.redirect('/admin/novedades');
+      // Respuesta según si se trata de una petición AJAX
+      if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        res.json({ success: true, redirect: '/admin/novedades' });
+      } else {
+        res.redirect('/admin/novedades');
+      }
     } else { // Usuario no encontrado
       console.log("Usuario no encontrado.");
-      res.render('admin/login', {
+      
+      if (req.xhr || req.headers.accept.indexOf('json') > -1) {
+        res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
+      } else {
+        res.render('admin/login', {
           layout: 'admin/layout',
           error: 'Credenciales incorrectas'
-      });
+        });
+      }
     }
   } catch (error) {
     console.log(error);
@@ -49,5 +59,7 @@ router.get('/logout', (req, res) => {
 });
 
 module.exports = router;
+
+
 
 

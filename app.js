@@ -6,14 +6,13 @@ var hbs = require('hbs');
 var mysql = require('mysql2');
 var cookieParser = require('cookie-parser');
 var logger = require('morgan');
-
 require('dotenv').config();
-
 var session = require('express-session');
 
+// Rutas
 var indexRouter = require('./routes/index');
 var usersRouter = require('./routes/users');
-var loginRouter = require('./routes/admin/login'); // login.js
+var loginRouter = require('./routes/admin/login');
 var novedadesRouter = require('./routes/admin/novedades');
 var contactoRouter = require('./routes/contacto');
 var staffRouter = require('./routes/staff');
@@ -24,8 +23,9 @@ var app = express();
 // view engine setup
 app.set('views', path.join(__dirname, 'views'));
 app.set('view engine', 'hbs');
-hbs.registerPartials(path.join(__dirname, 'views/admin'));
-hbs.registerPartials(path.join(__dirname, "views"));
+
+// Registrar los partials desde "views/partials"
+hbs.registerPartials(path.join(__dirname, 'views/partials'));
 
 // Configuración de session (asegúrate de usar una clave en variables de entorno en producción)
 app.use(session({
@@ -40,8 +40,7 @@ app.use(express.urlencoded({ extended: false }));
 app.use(cookieParser());
 app.use(express.static(path.join(__dirname, 'public')));
 
-
-
+// Rutas de la aplicación
 app.use('/', indexRouter);
 app.use('/users', usersRouter);
 app.use('/admin/login', loginRouter);
@@ -50,13 +49,15 @@ app.use('/contacto', contactoRouter);
 app.use('/staff', staffRouter);
 app.use('/diseños', diseñosRouter);
 
-
 const axios = require('axios');
+const API_URL = process.env.API_URL || 'https://api.example.com/latest';
+const API_KEY = process.env.API_KEY || 'default_api_key';
 
 app.get('/divisas', async (req, res) => {
   try {
-    const response = await axios.get('URL_DE_LA_API', {
-      params: { access_key: 'TU_CLAVE_API' }
+    const response = await axios.get(API_URL, {
+      params: { access_key: API_KEY },
+      timeout: 5000 // Timeout de 5 segundos para evitar bloqueos
     });
     const rates = response.data.rates; // Ajusta según la estructura de la API
     res.render('nav', { rates });
@@ -66,22 +67,17 @@ app.get('/divisas', async (req, res) => {
   }
 });
 
-
 // catch 404 and forward to error handler
 app.use(function (req, res, next) {
   next(createError(404));
 });
 
-// Manejo del error
+// Manejador de errores
 app.use(function (err, req, res, next) {
-  // set locals, solo desplegar el error en desarrollo
   res.locals.message = err.message;
   res.locals.error = req.app.get('env') === 'development' ? err : {};
-
-  // renderiza la página de error
   res.status(err.status || 500);
   res.render('error');
 });
 
 module.exports = app;
-

@@ -1,0 +1,27 @@
+<div class="login-container" id="login-container">
+  <h2>Iniciar Sesión</h2>
+  <form method="post" action="/admin/login">
+    <div>
+      <label>Usuario:</label>
+      <input type="text" name="usuario" required>
+    </div>
+    <div>
+      <label>Contraseña:</label>
+      <input type="password" name="password" required>
+    </div>
+    <div>
+      <button type="submit">Entrar</button>
+    </div>
+  </form>
+  {{#if error}}
+    <p class="error">{{error}}</p>
+  {{/if}}
+</div>
+
+
+
+
+
+
+
+ 

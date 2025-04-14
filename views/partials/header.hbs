@@ -1,0 +1,21 @@
+<header>
+  <div class="branding">
+    <h1>Desarrollo & Hosting Web</h1>
+  </div>
+  <nav>
+    <ul>
+      <li><a href="/staff">Staff</a></li>
+      <li><a href="/diseños web">Diseños Web</a></li>
+      <li><a href="/contacto">Contacto</a></li>
+    </ul>
+    <div class="login-area">
+      <!-- Ícono que activa el desplegable del login -->
+      <div class="login-icon" onclick="expandLogin()">
+        <i class="fas fa-user"></i>
+      </div>
+      <!-- Se incluye el partial del formulario de login -->
+      {{> login}}
+    </div>
+  </nav>
+</header>
+

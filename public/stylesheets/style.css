@@ -1,287 +1,551 @@
-/* Estilo general del header */
-header {
-  background-color: #444343;
+/*body {
+  background-image: url("/image/login/log1.jpg");
+  background-size: 50% 50%; 
+  background-repeat: repeat; 
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh; 
 }
-/* Contenedor del nav */
+section {
+  flex: 1; 
+}*/
+/* ================================================  
+   RESET Y CONFIGURACIÓN GENERAL
+   ================================================ */
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+}
+
+body {
+  background-image: url("/image/login/log1.jpg");
+  background-size: 50% 50%;
+  background-repeat: repeat;
+  font-family: Arial, Helvetica, sans-serif;
+  line-height: 1.6;
+  color: #333;
+  background-color: #fff;
+}
+
+/* ================================================  
+     HEADER Y NAVEGACIÓN
+     ================================================ */
+.branding {
+  text-align: center;
+  margin-bottom: 20px;
+}
+/* Estilos para el título con animación */
+.branding h1 {
+  font-size: 2.5em;
+  color: #e6d117; /* Cambia según tu diseño */
+  letter-spacing: 1px;
+  margin: 0;
+  display: inline-block;
+  /* Animación: sube y baja continuamente */
+  animation: verticalBounce 2s ease-in-out infinite;
+}
+/* Definición de la animación */
+@keyframes verticalBounce {
+  0%,
+  100% {
+    transform: translateY(0);
+  }
+  50% {
+    transform: translateY(
+      25px
+    ); /* Ajusta el valor para mayor o menor desplazamiento */
+  }
+}
+header {
+  background-color: #333;
+  border-bottom: 1px solid #ddd;
+  position: relative;
+}
+
 nav {
   display: flex;
-  /*  organizar los elementos */
-  justify-content: center;
-  justify-content: center;
+  justify-content: space-between;
+  align-items: center;
+  padding: 15px 20px;
 }
-/* Lista del menú */
+
+/* Menú principal */
 nav ul {
-  display: flex;
-  /* Cambia los ítems de la lista a disposición horizontal */
   list-style: none;
-  /* Elimina los puntos de la lista */
+  display: flex;
   gap: 20px;
-  /* Espaciado entre cada elemento del menú */
+}
+
+nav ul li a {
+  text-decoration: none;
+  color: #13a5a5;
+  font-weight: bold;
+  transition: color 0.3s ease;
+}
+
+nav ul li a:hover {
+  color: #007bff;
+}
+
+/* ================================================  
+     LOGIN Y DROPDOWN
+     ================================================ */
+
+/* Estilos para el contenedor del login que aparece en el menú */
+.login-container {
+  position: relative; /* Permite que el dropdown se posicione respecto a este contenedor */
+}
+
+.login-container a {
+  text-decoration: none;
+  color: #f5f1f1;
+  font-size: 1.2rem;
+}
+
+/* Estilos para el ícono que activa el desplegable (definido en login.hbs) */
+.login-icon {
+  color: whitesmoke;
+  cursor: pointer;
+  transition: transform 0.3s ease;
+}
+
+.login-icon:hover {
+  transform: scale(1.05);
+}
+
+/* ================================================  
+     FORMULARIO DE LOGIN (DESPLEGABLE)
+     ================================================ */
+/*
+    El formulario de login (contenedor con id "login-container") se posiciona
+    de manera absoluta relativa al contenedor padre. Inicialmente estará oculto,
+    y se mostrará cuando se le agregue la clase "expanded" mediante JavaScript.
+  */
+#login-container {
+  position: absolute;
+  top: 100%; /* Despliega justo debajo del elemento que lo activa */
+  right: 0;
+  width: 280px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+  padding: 15px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  z-index: 100;
+
+  /* Inicialmente oculto mediante opacidad y visibilidad */
+  opacity: 0;
+  visibility: hidden;
+  transition: opacity 0.3s ease, visibility 0.3s ease;
+}
+
+/* Cuando se activa, se muestra el dropdown */
+#login-container.expanded {
+  opacity: 1;
+  visibility: visible;
+}
+
+/* Estilizado para los títulos, formularios y botones */
+#login-container h2 {
+  font-size: 1.5rem;
+  margin-bottom: 15px;
+  text-align: center;
+}
+
+#login-container form div {
+  margin-bottom: 10px;
+}
+
+#login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+}
+
+#login-container input {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ccc;
+  border-radius: 4px;
+}
+
+#login-container button {
+  width: 100%;
   padding: 10px;
+  margin-top: 10px;
+  background-color: #007bff;
+  border: none;
+  color: #fff;
+  font-weight: bold;
+  border-radius: 4px;
+  cursor: pointer;
+  transition: background-color 0.3s ease;
+}
+
+#login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* En caso de error, se mostrará un mensaje destacado */
+#login-container .error {
+  color: #d9534f;
+  text-align: center;
+  margin-top: 10px;
+}
+/* ================================================  
+   AJUSTES RESPONSIVOS
+   ================================================ */
+@media (max-width: 768px) {
+  /* Ajusta la navegación a una columna */
+  nav {
+    flex-direction: column;
+    align-items: flex-start;
+  }
+
+  /* Menú en formato vertical */
+  nav ul {
+    flex-direction: column;
+    gap: 10px;
+    width: 100%;
+    margin-bottom: 10px;
+  }
+
+  nav ul li {
+    width: 100%;
+  }
+
+  nav ul li a {
+    display: block;
+    width: 100%;
+    padding: 8px;
+    border-bottom: 1px solid #ddd;
+  }
+
+  /* Ajusta el contenedor del login dentro del menú */
+  .login-container {
+    align-self: flex-end;
+    margin-top: 10px;
+  }
+
+  /* Modifica el dropdown para que ocupe el ancho total disponible en el menú */
+  #login-container {
+    width: 100%;
+    right: 0;
+    top: 100%;
+    box-shadow: none;
+    border: none;
+    border-top: 1px solid #ddd;
+    border-radius: 0;
+    padding: 10px;
+  }
+
+  /* Reducción de tamaño del título y botones para móviles */
+  #login-container h2 {
+    font-size: 1.3rem;
+  }
+
+  #login-container button {
+    padding: 8px;
+  }
+}
+
+/* Contenedor principal para el layout */
+.wrapper {
+  display: flex;
+  flex-direction: column;
+  min-height: 100vh;
+}
+
+/* El contenido se expande para empujar el footer hacia abajo */
+.content {
+  flex: 1;
+}
+/* Estilos para el footer */
+footer {
+  background-color: #333; /* Fondo oscuro para contraste */
+  color: #e6d117; /* Texto blanco para buena lectura */
+  text-align: center;
+  padding: 20px;
+  margin-block-start: 10%;
+  font-size: 0.9rem;
+}
+
+/* Estilo para el párrafo del footer */
+footer p {
+  margin: 0 0 10px;
+  font-weight: 300;
+}
+
+/* Lista de redes sociales */
+footer ul {
+  list-style: none; /* Elimina viñetas */
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  gap: 15px; /* Espacio entre ítems */
+  padding: 0;
   margin: 0;
 }
 
-/* Enlaces del menú */
-nav ul li a {
-  text-decoration: none;
-  /* Elimina el subrayado */
-  font-size: 1em;
-  /* Tamaño de letra (ajusta según lo necesites) */
-  font-weight: bold;
-  /* Resalta los textos */
-  color: darkorange;
-  /* Color del texto */
-  padding: 10px 20px;
-  /* Espaciado interno */
-  transition: all 0.3s ease;
-  /* Transición suave en el hover */
-}
-
-/* Hover efecto */
-nav ul li a:hover {
-  background-color: #007bff;
-  /* Fondo azul al pasar el mouse */
-  color: rgb(243, 250, 250);
-  /* Texto blanco en el hover */
-  border-color: #0056b3;
-  /* Cambia el color del borde en el hover */
-}
-body {
-  background-image: url("/image/login/log1.jpg");
-  background-size: 50% 50%; /* Ajusta la imagen para cubrir toda la pantalla */
-  background-repeat: repeat; /* Evita la repetición de la imagen */
-  /*background-position: center center; /* Centra la imagen */
-  display: flex;
-  flex-direction: column;
-  min-height: 100vh; /* Altura mínima igual al 100% de la ventana */
-}
-
-section {
-  flex: 1; /* Toma el espacio restante entre header y footer */
-}
-
-footer {
-  background-color: #555;
-  color: #33d1e6;
-  text-align: center;
-  padding: 20px;
-  position: relative; /* Cambia de "absolute" a "relative" */
-  bottom: 0;
-  width: 100%;
-}
-section {
-  margin-bottom: 40px; /* Espaciado entre el contenedor y el footer */
-}
-@media (max-width: 480px) {
-  section {
-    margin-bottom: 20px; /* Reduce el margen inferior en pantallas pequeñas */
-  }
-
-  footer {
-    padding: 10px; /* Reduce el padding del footer */
-    font-size: 14px; /* Ajusta el tamaño de fuente en el footer */
-  }
-}
-
-/* Footer */
-footer p {
-  margin-bottom: 15px; /* Espaciado ajustado */
-}
-
-footer ul {
-  display: flex;
-  justify-content: center;
-  gap: 20px; /* Espaciado entre íconos ajustado */
-}
-
+/* Estilo para los enlaces de redes sociales */
 footer ul li a {
-  color: #46dcf0; /* Color blanco para visibilidad */
-  font-size: 24px; /* Tamaño ajustado */
-  display: inline-block; /* Asegura que el ícono se renderice */
-  text-decoration: none;
+  color: #e71bd6; /* Color inicial para los íconos */
+  font-size: 1.4rem;
+  transition: color 0.3s ease, transform 0.3s ease;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
 }
 
+/* Efecto hover para los enlaces */
 footer ul li a:hover {
-  color: #de2cee; /* Color más claro al pasar el mouse */
+  color: #007bff; /* Color alternativo al hacer hover */
+  transform: translateY(-3px); /* Desplazamiento sutil hacia arriba */
 }
 
-/* Íconos modernos */
-footer ul li a.instagram::before {
-  content: "\f16d"; /* Ícono Instagram */
-}
+/* Ajuste responsivo: en dispositivos pequeños se centra y se reduce espacio */
+@media (max-width: 576px) {
+  footer {
+    font-size: 0.8rem;
+    padding: 15px 0;
+  }
 
-footer ul li a.facebook::before {
-  content: "\f09a"; /* Ícono Facebook */
+  footer ul {
+    gap: 10px;
+  }
 }
+/* ===============================================
+   Estilos para nav.hbs
+   =============================================== */
 
-footer ul li a.skype::before {
-  content: "\f17e"; /* Ícono Skype */
-}
-
-footer ul li a.youtube::before {
-  content: "\f16a"; /* Ícono YouTube */
-}
-
-/* Ajustes generales */
-footer ul li a::before {
-  font-family: "Font Awesome 5 Free"; /* Asegura la familia de íconos */
-  font-weight: 900; /* Estilo en negrita */
-  font-size: 20px; /* Tamaño ajustado */
-  color: #c544df; /* Color blanco */
-  display: inline-block; /* Asegura la visibilidad */
-}
-.login-container {
-  display: none;
-  transition: opacity 0.5s ease, transform 0.5s ease;
-  opacity: 0;
-  transform: scale(0.9);
-}
-.login-container.expanded {
-  display: block;
-  opacity: 1;
-  transform: scale(1);
-  background: #24a6aa; /* Fondo del contenedor */
-  padding: 10px; /* Espaciado interno */
-  border-radius: 8px; /* Bordes redondeados más compactos */
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.2); /* Sombra más sutil */
-  width: 300px; /* Ancho fijo para hacerlo más pequeño */
-  max-width: 90%; /* Asegura que se adapte en pantallas pequeñas */
-  margin: 0 auto; /* Centra el contenedor */
-  text-align: center; /* Centra el texto internamente */
-}
-
-.login-icon {
-  cursor: pointer;
-  width: 50px;
-  height: 50px;
-  margin-bottom: 40px;
-}
-/* Estilos generales para el formulario */
-section {
-  background-color: gray;
-  padding: 5px;
-  /*border: 2px solid magenta;*/
-  border-radius: 20px;
-  box-shadow: 3px 3px 10px rgba(45, 140, 143, 0.1);
-  width: 750px;
-  margin: 10px auto;
-}
-
-h1 {
-  font-family: "Arial", sans-serif;
-  color: #d8d668;
+/* ----- Contenedor de Noticias ----- */
+.news-container {
+  background-color: silver; /* Fondo claro para diferenciar */
+  padding: 15px 10px;
+  margin: 10%;
   text-align: center;
-  font-size: 26px;
-  margin-bottom: 20px;
+  border-bottom: 1px solid #ddd;
 }
 
+.news-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.news-container marquee {
+  font-size: 1rem;
+  color: #810717;
+}
+
+/* Espaciado entre elementos del marquee */
+.news-container marquee span {
+  margin-right: 40px;
+}
+
+/* ----- Sección de Carousel ----- */
+#carousel-section {
+  position: relative;
+  margin: 20px auto;
+  max-width: 800px; /* Ancho máximo del carrusel */
+}
+
+#carousel-section .carousel-inner {
+  border-radius: 6px;
+  overflow: hidden;
+}
+
+#carousel-section .carousel-item img {
+  object-fit: cover;
+  width: 100%;
+  height: 500px; /* Altura fija para mantener uniformidad */
+}
+
+/* Botones de control con sombra para destacarlos */
+.carousel-control-prev,
+.carousel-control-next {
+  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+}
+
+/* ----- Contenedor del Ticker de Divisas ----- */
+.currency-ticker-container {
+  background-color: silver;
+  padding: 10px 15px;
+  max-width: 40%;
+  margin: 0 auto;
+  text-align: center;
+  border-top: 1px solid #141111;
+  margin-top: 15px;
+}
+
+.currency-ticker-container h2 {
+  font-size: 1.8em;
+  margin-bottom: 10px;
+  color: #333;
+}
+
+.currency-ticker-container marquee {
+  font-size: 1.2rem;
+  color: #06991a;
+}
+
+/* Espaciado entre elementos del marquee en el ticker */
+.currency-ticker-container marquee span {
+  margin-right: 40px;
+}
+
+/* ----- Ajustes Responsivos ----- */
+@media (max-width: 768px) {
+  .news-container h2,
+  .currency-ticker-container h2 {
+    font-size: 1.5em;
+  }
+
+  #carousel-section .carousel-item img {
+    height: 300px;
+  }
+}
+/* ============================================
+   CSS para contacto.hbs
+============================================ */
+
+/* Estilos generales para las secciones de la página */
+section {
+  padding: 40px 20px;
+  margin-bottom: 40px;
+  color: #333;
+}
+
+/* ============================================
+   Registro - Formulario de Registro
+============================================ */
 .registro-form {
-  display: flex;
-  flex-direction: column;
-  gap: 15px;
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #f7f7f7;
+  padding: 30px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
 
-.form-label {
+.registro-form h1 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #222;
+}
+
+.registro-form div {
+  margin-bottom: 15px;
+}
+
+.registro-form .form-label {
+  display: block;
+  margin-bottom: 5px;
   font-weight: bold;
-  color: #160b16;
+  color: #555;
 }
 
-.form-control {
-  width: 90%;
+.registro-form .form-control {
+  width: 100%;
   padding: 10px;
   border: 1px solid #ccc;
   border-radius: 4px;
-  font-size: 10px;
+  font-size: 1em;
 }
 
-textarea.form-control {
-  resize: none;
+.registro-form textarea.form-control {
+  resize: vertical;
 }
 
-.btn {
-  background-color: #007bff;
-  color: #772b77;
+/* Botón de envío */
+.registro-form .btn {
+  width: 100%;
+  padding: 12px;
+  font-size: 1em;
   border: none;
   border-radius: 4px;
-  padding: 10px 15px;
+  background-color: #007bff;
+  color: #fff;
   cursor: pointer;
+  transition: background-color 0.3s ease;
 }
 
-.btn:hover {
-  background-color: #1f948e;
-}
-.error-message {
-  color: #ff0000;
-  font-size: 12px;
-  margin-top: 5px;
+.registro-form .btn:hover {
+  background-color: #0056b3;
 }
 
-/* Diseño responsivo */
-@media (max-width: 768px) {
-  section {
-    padding: 15px;
-  }
-}
-/*ubicacion mapa*/
+/* ============================================
+   Ubicación - Mapa
+============================================ */
 .map-container {
-  width: 100%;
   max-width: 800px;
-  margin: 20px auto; /* Centrar el mapa */
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1); /* Sombra suave */
-  border-radius: 8px; /* Bordes redondeados */
-  overflow: hidden; /* Asegura que los bordes se vean redondeados */
+  margin: 0 auto;
+  overflow: hidden;
+  border-radius: 8px;
+  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
 }
 
-iframe {
+/* Asegura que el iframe sea responsivo */
+.map-container iframe {
   width: 100%;
-  height: 400px; /* Altura del mapa */
-  border: none; /* Elimina el borde del iframe */
-}
-/*contacto utiles*/
-.contact-info {
-  display: grid;
-  grid-template-columns: repeat(
-    auto-fit,
-    minmax(250px, 1fr)
-  ); /* Diseño de columnas responsivo */
-  gap: 20px;
-  padding: 20px;
-  background-color: #f4f4f4;
-  border-radius: 8px;
-  box-shadow: 0px 4px 10px rgba(0, 0, 0, 0.1);
-  margin: 20px auto;
-  max-width: 800px;
+  height: 450px;
+  border: 0;
 }
 
-.contact-info div {
-  background-color: #ffffff;
-  border-radius: 8px;
-  padding: 15px;
+/* ===== Estilos Generales para Encabezados de Sección ===== */
+section h1 {
   text-align: center;
-  box-shadow: 0px 4px 6px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease;
+  margin-bottom: 20px;
+  font-size: 2em;
+  color: #222;
 }
 
-.contact-info div:hover {
+/* ===== Información de Contacto - Efectos Hover ===== */
+.contact-info {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-around;
+  gap: 30px;
+  max-width: 1000px;
+  margin: 0 auto;
+}
+
+/* Cada contenedor de información */
+.contact-info > div {
+  flex: 1 1 220px;
+  background-color: #f1f1f1;
+  padding: 20px;
+  border-radius: 8px;
+  text-align: center;
+  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
+  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones */
+}
+
+/* Efecto hover: se mueve ligeramente hacia arriba y se intensifica la sombra */
+.contact-info > div:hover {
   transform: translateY(-5px);
-  box-shadow: 0px 6px 12px rgba(0, 0, 0, 0.2);
+  box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
 }
 
+/* ===== Resto de estilos de Información de Contacto ===== */
 .contact-info i {
-  font-size: 30px;
+  font-size: 2rem;
   color: #007bff;
   margin-bottom: 10px;
 }
 
 .contact-info p {
-  font-weight: bold;
-  color: #333;
+  font-size: 1.1em;
   margin: 10px 0;
+  font-weight: bold;
 }
 
 .contact-info ul {
   list-style: none;
   padding: 0;
+  margin: 0;
 }
 
 .contact-info ul li {
@@ -289,92 +553,47 @@ iframe {
 }
 
 .contact-info ul li a {
+  color: #333;
   text-decoration: none;
-  color: #007bff;
-  font-size: 14px;
   transition: color 0.3s ease;
 }
 
 .contact-info ul li a:hover {
-  color: #0056b3;
+  color: #007bff;
 }
 
-/* Diseño responsivo */
+/* ===== Ajustes Responsivos ===== */
 @media (max-width: 768px) {
+  section h1 {
+    font-size: 1.8em;
+  }
+
   .contact-info {
-    grid-template-columns: 1fr;
+    flex-direction: column;
+    align-items: center;
   }
 }
-/*contenedores noticias*/
-.news-container {
-  /*background-color: #f4f4f4;*/
-  padding: 20px;
-  border-radius: 8px;
-  margin: 20px auto;
-  box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1);
-  max-width: 900px;
-  text-align: center;
+/* Estilos para el ícono de WhatsApp */
+
+/* Si deseas que el ícono se muestre como un botón flotante */
+.whatsapp-icon {
+  position: fixed;
+  bottom: 20px;
+  right: 20px;
+  background-color: #25d366; /* Color característico de WhatsApp */
+  color: #e745ec;
+  border-radius: 40%;
+  border: 2px solid rgb(2, 8, 8);
+  padding: 15px;
+  font-size: 1.8rem;
+  box-shadow: 0 2px 6px rgba(0, 0, 0, 0.3);
+  z-index: 1000;
+  transition: transform 0.3s ease, background-color 0.3s ease;
+  text-decoration: none;
 }
 
-.news-container h2 {
-  color: #333;
-  font-size: 20px;
-  margin-bottom: 10px;
-}
-
-.news-container marquee span {
-  font-weight: bold;
-  color: #007bff;
-  margin-right: 20px;
-}
-/*contenedor carrussell*/
-#carousel-section {
-  margin: 40px auto;
-  max-width: 1200px;
-}
-
-.carousel-inner img {
-  width: 100%; /* Asegura que la imagen ocupe todo el ancho del contenedor */
-  height: auto; /* Mantiene la proporción original de la imagen */
-  object-fit: contain; /* Evita deformaciones si la imagen no ocupa todo el contenedor */
-  border-radius: 8px; /* Bordes redondeados */
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  /* background-color: rgba(0, 0, 0, 0.5);*/
-  border-radius: 50%;
-}
-
-/*contenedor divisas*/
-#carousel-section {
-  margin: 40px auto;
-  max-width: 1200px;
-}
-
-.carousel-inner img {
-  height: 500px;
-  object-fit: cover; /* Asegura que las imágenes se vean bien */
-  border-radius: 8px;
-}
-
-.carousel-control-prev-icon,
-.carousel-control-next-icon {
-  background-color: rgba(0, 0, 0, 0.5);
-  border-radius: 50%;
-}
-/*confi-video*/
-.video-container {
-  max-width: 100%;
-  text-align: center;
-  margin: 20px auto;
-}
-
-/* Opcional: para un video responsive */
-.video-container iframe,
-.video-container video {
-  width: 100%;
-  height: auto;
-  max-width: 840px; /* O el valor que desees */
-  margin: 20%;
+/* Al pasar el mouse */
+.whatsapp-icon:hover {
+  transform: scale(1.1);
+  background-color: #1ebe57;
 }
