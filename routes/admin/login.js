@@ -38,7 +38,7 @@ router.post('/', async (req, res, next) => {
       if (req.xhr || req.headers.accept.indexOf('json') > -1) {
         res.status(401).json({ success: false, message: 'Credenciales incorrectas' });
       } else {
-        res.render('admin/login', {
+        res.render('partials/login', {
           layout: 'admin/layout',
           error: 'Credenciales incorrectas'
         });

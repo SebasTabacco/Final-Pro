@@ -12,11 +12,6 @@ section {
 /* ================================================  
    RESET Y CONFIGURACIÓN GENERAL
    ================================================ */
-* {
-  margin: 0;
-  padding: 0;
-  box-sizing: border-box;
-}
 
 body {
   background-image: url("/image/login/log1.jpg");
@@ -31,34 +26,44 @@ body {
 /* ================================================  
      HEADER Y NAVEGACIÓN
      ================================================ */
-.branding {
+/* Centrado del contenido en el header */
+header .profesional-text {
   text-align: center;
-  margin-bottom: 20px;
+  margin: 20px auto;
 }
-/* Estilos para el título con animación */
-.branding h1 {
-  font-size: 2.5em;
-  color: #e6d117; /* Cambia según tu diseño */
-  letter-spacing: 1px;
-  margin: 0;
+
+/* Estilos para el título */
+header .profesional-text h2 {
+  display: inline-flex; /* Permite alinear el ícono y el texto en línea */
+  align-items: center;
+  font-family: "Montserrat", sans-serif;
+  font-size: 2rem;
+  color: #ff69b4;
+  position: relative;
+}
+
+/* Pseudo-elemento decorativo: ícono con varios puntos en estilo similar al logo de Sigma Studio */
+header .profesional-text h2::before {
+  content: "";
   display: inline-block;
-  /* Animación: sube y baja continuamente */
-  animation: verticalBounce 2s ease-in-out infinite;
+  vertical-align: middle;
+  width: 24px;
+  height: 24px;
+  margin-right: 10px;
+  /* Ícono inline SVG con puntos (se utiliza URL encode para el color #FF69B4) */
+  background-image: url('data:image/svg+xml;utf8,<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 24 24"><circle cx="12" cy="12" r="2" fill="%23FF69B4"/><circle cx="8" cy="6" r="1" fill="%23FF69B4"/><circle cx="16" cy="6" r="1" fill="%23FF69B4"/><circle cx="7" cy="18" r="1" fill="%23FF69B4"/><circle cx="17" cy="18" r="1" fill="%23FF69B4"/></svg>');
+  background-size: cover;
+  background-repeat: no-repeat;
+  transition: transform 0.3s ease;
 }
-/* Definición de la animación */
-@keyframes verticalBounce {
-  0%,
-  100% {
-    transform: translateY(0);
-  }
-  50% {
-    transform: translateY(
-      25px
-    ); /* Ajusta el valor para mayor o menor desplazamiento */
-  }
+
+/* Efecto sutil hover sobre el ícono decorativo */
+header .profesional-text h2:hover::before {
+  transform: rotate(20deg);
 }
+
 header {
-  background-color: #333;
+  background-color: #150824;
   border-bottom: 1px solid #ddd;
   position: relative;
 }
@@ -79,7 +84,7 @@ nav ul {
 
 nav ul li a {
   text-decoration: none;
-  color: #13a5a5;
+  color: #0dc0c0;
   font-weight: bold;
   transition: color 0.3s ease;
 }
@@ -92,26 +97,68 @@ nav ul li a:hover {
      LOGIN Y DROPDOWN
      ================================================ */
 
-/* Estilos para el contenedor del login que aparece en el menú */
+/* Contenedor de Login */
 .login-container {
-  position: relative; /* Permite que el dropdown se posicione respecto a este contenedor */
+  width: 320px;
+  margin: 40px auto;
+  padding: 30px;
+  text-align: center;
+  border: 1px solid #e1e1e1;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+  background-color: #fff;
 }
 
-.login-container a {
-  text-decoration: none;
-  color: #f5f1f1;
-  font-size: 1.2rem;
-}
-
-/* Estilos para el ícono que activa el desplegable (definido en login.hbs) */
+/* Estilo para el ícono profesional */
 .login-icon {
-  color: whitesmoke;
-  cursor: pointer;
-  transition: transform 0.3s ease;
+  font-size: 4rem; /* Tamaño del ícono */
+  color: #007bff; /* Color sutil y profesional */
+  margin-bottom: 15px; /* Espacio inferior para separar del título */
 }
 
-.login-icon:hover {
-  transform: scale(1.05);
+/* Título de Login */
+.login-container h2 {
+  font-family: "Montserrat", sans-serif;
+  font-size: 1.8rem;
+  color: #333;
+  margin-bottom: 25px;
+}
+
+/* Estilos generales para inputs y botón (opcional) */
+.login-container form div {
+  margin-bottom: 15px;
+}
+.login-container label {
+  display: block;
+  margin-bottom: 5px;
+  font-weight: bold;
+  color: #555;
+}
+.login-container input[type="text"],
+.login-container input[type="password"] {
+  width: 100%;
+  padding: 8px;
+  border: 1px solid #ddd;
+  border-radius: 4px;
+}
+.login-container button {
+  width: 100%;
+  padding: 10px;
+  background-color: #007bff;
+  color: #fff;
+  border: none;
+  border-radius: 4px;
+  cursor: pointer;
+  font-size: 1rem;
+}
+.login-container button:hover {
+  background-color: #0056b3;
+}
+
+/* Opcional: Estilo para el mensaje de error */
+.login-container .error {
+  color: #d9534f;
+  margin-top: 15px;
 }
 
 /* ================================================  
@@ -318,92 +365,253 @@ footer ul li a:hover {
 /* ===============================================
    Estilos para nav.hbs
    =============================================== */
-
-/* ----- Contenedor de Noticias ----- */
-.news-container {
-  background-color: silver; /* Fondo claro para diferenciar */
-  padding: 15px 10px;
-  margin: 10%;
-  text-align: center;
-  border-bottom: 1px solid #ddd;
+/* Contenedor principal de la historia */
+.historia {
+  max-width: 800px; /* Limita el ancho del contenedor */
+  margin: 20px auto; /* Centra el contenedor horizontalmente */
+  padding: 20px;
+  background-color: #25173f; /* Fondo claro para contraste */
+  border-left: 5px solid #c643e7; /* Borde decorativo */
+  border-radius: 8px; /* Bordes redondeados para un diseño moderno */
+  box-shadow: 0 4px 8px rgba(33, 235, 241, 0.322); /* Sombra sutil para profundidad */
+  font-family: "Arial", sans-serif; /* Fuente legible */
+  line-height: 1.8; /* Espaciado entre líneas para mejor lectura */
+  color: #333; /* Texto oscuro */
 }
 
-.news-container h2 {
-  font-size: 1.8em;
-  margin-bottom: 10px;
-  color: #333;
+/* Estilo del texto */
+.historia small {
+  font-size: 1rem; /* Tamaño de texto ajustado */
+  color: #fff8f8; /* Color ligeramente más claro para suavidad */
+  display: block; /* Asegura que el texto ocupe todo el ancho */
 }
 
-.news-container marquee {
-  font-size: 1rem;
-  color: #810717;
+/* Estilo de la cita */
+.historia small::before {
+  content: "“"; /* Agrega una comilla inicial decorativa */
+  font-size: 2rem;
+  color: #007bff;
+  vertical-align: top;
 }
 
-/* Espaciado entre elementos del marquee */
-.news-container marquee span {
-  margin-right: 40px;
+.historia small::after {
+  content: "”"; /* Agrega una comilla final decorativa */
+  font-size: 2rem;
+  color: #007bff;
+  vertical-align: bottom;
+}
+
+/* Ajustes responsivos */
+@media (max-width: 768px) {
+  .historia {
+    padding: 15px;
+    font-size: 0.9rem;
+  }
 }
 
 /* ----- Sección de Carousel ----- */
-#carousel-section {
-  position: relative;
-  margin: 20px auto;
-  max-width: 800px; /* Ancho máximo del carrusel */
+/* Contenedor principal que combina la imagen y el contenido de texto */
+.image-text-container {
+  display: flex; /* Alinea los elementos en horizontal */
+  align-items: center; /* Alinea verticalmente al centro */
+  gap: 40px; /* Espacio entre la imagen y el texto */
+  padding: 20px;
+  background-color: #f9f9f9; /* Fondo suave para resaltar el contenido */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 10px; /* Bordes redondeados */
+  max-width: 100%; /* Ocupa el ancho disponible */
+  margin: 20px auto; /* Centrado horizontal y espacio vertical */
 }
 
-#carousel-section .carousel-inner {
-  border-radius: 6px;
-  overflow: hidden;
+/* Sección que contiene la imagen */
+.image-text-container .image-side {
+  flex-shrink: 0; /* Evita que la imagen se reduzca demasiado */
 }
 
-#carousel-section .carousel-item img {
-  object-fit: cover;
-  width: 100%;
-  height: 500px; /* Altura fija para mantener uniformidad */
+/* Estilo de la imagen */
+.image-text-container .image-side img {
+  display: block;
+  width: 700px; /* Puedes ajustar este valor o usar porcentajes */
+  height: auto;
+  border-radius: 10px; /* Opcional: redondear la imagen */
 }
 
-/* Botones de control con sombra para destacarlos */
-.carousel-control-prev,
-.carousel-control-next {
-  filter: drop-shadow(0 2px 4px rgba(0, 0, 0, 0.6));
+/* Contenedor para el texto */
+.image-text-container .text-side {
+  flex: 1; /* El contenido textual ocupa el espacio restante */
+}
+
+/* Estilos para los títulos y el párrafo */
+.image-text-container .text-side h1 {
+  font-size: 2rem;
+  color: #99078d; /* Color azul para el título principal */
+  text-align: center;
+  margin-bottom: 30px;
+}
+
+.image-text-container .text-side h2 {
+  font-size: 1.5rem;
+  color: #333; /* Color oscuro para el subtítulo */
+  text-align: center;
+  margin-bottom: 20px;
+}
+
+.image-text-container .text-side p {
+  font-size: 1rem;
+  color: #555; /* Color gris suave para el párrafo */
+  line-height: 1.6;
 }
 
 /* ----- Contenedor del Ticker de Divisas ----- */
-.currency-ticker-container {
-  background-color: silver;
-  padding: 10px 15px;
-  max-width: 40%;
-  margin: 0 auto;
-  text-align: center;
-  border-top: 1px solid #141111;
-  margin-top: 15px;
-}
 
-.currency-ticker-container h2 {
-  font-size: 1.8em;
+.ticker-container {
+  margin-top: 40px; /* Ajusta el espacio superior para separar del carrusel */
   margin-bottom: 10px;
-  color: #333;
+  margin-left: auto;
+  margin-right: auto;
+  padding: 10px;
+  max-width: 100%;
+  background-color: #585454;
+  border: 1px solid #ddd;
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+  text-align: center;
+  font-family: Arial, sans-serif;
 }
 
-.currency-ticker-container marquee {
+.ticker-container h2 {
+  font-size: 1.8rem;
+  color: #4e034b;
+  margin-bottom: 20px;
+}
+
+/* Carrusel interno para el ticker */
+.ticker {
+  display: flex;
+  overflow: hidden;
+  white-space: nowrap;
+  animation: scroll 30s linear infinite; /* Animación para desplazamiento continuo */
+}
+
+.ticker:hover {
+  animation-play-state: paused; /* Pausa la animación al pasar el mouse */
+}
+
+/* Elementos del Carrusel del Ticker */
+.ticker-item {
+  display: inline-block;
+  min-width: 300px;
+  margin: 0 10px;
+  padding: 15px;
+  background-color: #fff;
+  border: 1px solid #ddd;
+  border-radius: 8px;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+  text-align: center;
+}
+
+.ticker-item h3 {
   font-size: 1.2rem;
-  color: #06991a;
+  color: #007bff; /* Azul profesional */
+  margin-bottom: 10px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-/* Espaciado entre elementos del marquee en el ticker */
-.currency-ticker-container marquee span {
-  margin-right: 40px;
+.ticker-item h3 i {
+  margin-right: 10px; /* Espaciado entre ícono y texto */
+  color: #007bff;
 }
 
-/* ----- Ajustes Responsivos ----- */
+.ticker-item p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.ticker-item small {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Animación del Carrusel del Ticker */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsivo */
 @media (max-width: 768px) {
-  .news-container h2,
-  .currency-ticker-container h2 {
-    font-size: 1.5em;
+  #carousel-section {
+    height: 400px;
+    margin: 20px 0 30px 0;
   }
 
   #carousel-section .carousel-item img {
-    height: 300px;
+    height: 400px;
+  }
+
+  .ticker-container {
+    padding: 15px;
+  }
+
+  .ticker-item {
+    min-width: 200px;
+  }
+
+  .ticker-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .ticker-item h3 i {
+    font-size: 1rem;
+  }
+}
+
+.ticker-item p {
+  font-size: 1.4rem;
+  font-weight: bold;
+  color: #333;
+  margin-bottom: 5px;
+}
+
+.ticker-item small {
+  font-size: 0.9rem;
+  color: #666;
+}
+
+/* Animación del Carrusel */
+@keyframes scroll {
+  0% {
+    transform: translateX(0);
+  }
+  100% {
+    transform: translateX(-100%);
+  }
+}
+
+/* Responsivo */
+@media (max-width: 768px) {
+  .ticker-container {
+    padding: 15px;
+  }
+
+  .ticker-item {
+    min-width: 200px;
+  }
+
+  .ticker-container h2 {
+    font-size: 1.5rem;
+  }
+
+  .ticker-item h3 i {
+    font-size: 1rem;
   }
 }
 /* ============================================
@@ -414,7 +622,7 @@ footer ul li a:hover {
 section {
   padding: 40px 20px;
   margin-bottom: 40px;
-  color: #333;
+  color: #2f023a;
 }
 
 /* ============================================
@@ -423,10 +631,10 @@ section {
 .registro-form {
   max-width: 600px;
   margin: 0 auto;
-  background-color: #f7f7f7;
+  background-color: #120116;
   padding: 30px;
   border-radius: 8px;
-  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 2px 2px 5px rgba(217, 16, 224, 0.637);
 }
 
 .registro-form h1 {
@@ -444,7 +652,7 @@ section {
   display: block;
   margin-bottom: 5px;
   font-weight: bold;
-  color: #555;
+  color: #9c0eaf;
 }
 
 .registro-form .form-control {
@@ -484,7 +692,7 @@ section {
   margin: 0 auto;
   overflow: hidden;
   border-radius: 8px;
-  box-shadow: 0 2px 10px rgba(0, 0, 0, 0.1);
+  box-shadow: 3px 2px 10px #046e81ea;
 }
 
 /* Asegura que el iframe sea responsivo */
@@ -503,6 +711,7 @@ section h1 {
 }
 
 /* ===== Información de Contacto - Efectos Hover ===== */
+/* Contenedor de Información (general) */
 .contact-info {
   display: flex;
   flex-wrap: wrap;
@@ -510,6 +719,7 @@ section h1 {
   gap: 30px;
   max-width: 1000px;
   margin: 0 auto;
+  box-shadow: 1px 5px 7px magenta;
 }
 
 /* Cada contenedor de información */
@@ -519,14 +729,27 @@ section h1 {
   padding: 20px;
   border-radius: 8px;
   text-align: center;
-  box-shadow: 0 1px 5px rgba(0, 0, 0, 0.1);
-  transition: transform 0.3s ease, box-shadow 0.3s ease; /* Transiciones */
+  box-shadow: 2px 1px 5px 2px rgba(31, 196, 238, 0.5);
+  /* Se define la transición para el estado normal (cuando no se aplica animación) */
+  transition: box-shadow 0.3s ease;
 }
 
-/* Efecto hover: se mueve ligeramente hacia arriba y se intensifica la sombra */
+/* Al pasar el mouse: se inicia la animación de giro + elevación */
 .contact-info > div:hover {
-  transform: translateY(-5px);
+  /* Iniciamos la animación; la duración es de 2s lineal e infinita */
+  animation: spinEffect 2s linear infinite;
+  /* Se intensifica la sombra durante el hover */
   box-shadow: 0 4px 8px rgba(0, 0, 0, 0.2);
+}
+
+/* Keyframes para la animación: combina una elevación y giro en Y */
+@keyframes spinEffect {
+  from {
+    transform: translateY(-5px) rotateY(0deg);
+  }
+  to {
+    transform: translateY(-5px) rotateY(360deg);
+  }
 }
 
 /* ===== Resto de estilos de Información de Contacto ===== */
@@ -573,6 +796,7 @@ section h1 {
     align-items: center;
   }
 }
+
 /* Estilos para el ícono de WhatsApp */
 
 /* Si deseas que el ícono se muestre como un botón flotante */
@@ -596,4 +820,369 @@ section h1 {
 .whatsapp-icon:hover {
   transform: scale(1.1);
   background-color: #1ebe57;
+}
+
+/* Contenedor principal de novedades */
+.novedades-1 {
+  padding: 20px;
+  background-color: #fff; /* Fondo blanco para claridad */
+  border-radius: 10px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1); /* Sombra para efecto de tarjeta */
+  max-width: 800px;
+  margin: 20px auto;
+}
+
+/* Estilo del encabezado */
+.novedades-1 h2 {
+  font-size: 1.8rem;
+  color: #007bff; /* Azul profesional */
+  text-align: center;
+  margin-bottom: 10px;
+}
+
+.novedades-1 p {
+  text-align: center;
+  font-size: 1rem;
+  color: #555;
+  margin-bottom: 20px;
+}
+
+/* Botón de cerrar sesión */
+.novedades-1 a[href="/admin/login/logout"] {
+  display: inline-block;
+  margin: 20px auto; /* Se aumenta un poco el margen para separarlo */
+  padding: 10px 20px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #dc3545; /* Rojo para acción importante */
+  border-radius: 5px;
+  text-decoration: none;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  text-align: center;
+}
+
+.novedades-1 a[href="/admin/login/logout"]:hover {
+  background-color: #c82333;
+  transform: translateY(-2px);
+}
+
+/* Contenedor de novedades (now) */
+.now {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin: 20px 0;
+  background-color: #e9ecef;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
+}
+
+.now h3 {
+  font-size: 1.5rem;
+  color: #343a40; /* Color oscuro neutral */
+  margin: 0;
+}
+
+.col-5-text-end {
+  text-align: right;
+}
+
+.col-5-text-end a {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  padding: 10px 15px;
+  font-size: 0.9rem;
+  color: #fff;
+  background-color: #28a745; /* Verde indicando acción positiva */
+  text-decoration: none;
+  border-radius: 5px;
+  transition: background-color 0.3s ease, transform 0.3s ease;
+  box-shadow: 0 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.col-5-text-end a i {
+  margin-right: 8px; /* Espaciado entre el ícono y el texto */
+}
+
+.col-5-text-end a:hover {
+  background-color: #218838;
+  transform: translateY(-2px);
+}
+
+/* Contenedor del video */
+.video-container {
+  margin: 20px auto;
+  max-width: 100%;
+  border-radius: 8px;
+  overflow: hidden;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.video-container video {
+  display: block;
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+}
+/*----------------------
+      ESTAFF  
+-------------------------*/
+/* Estilos para el contenedor principal */
+.staff-admin {
+  display: flex; /* Organiza los elementos en fila */
+  align-items: center; /* Alinea verticalmente al centro */
+  justify-content: space-between; /* Distribuye el espacio entre los contenedores */
+  gap: 20px; /* Espacio entre los contenedores */
+  max-width: 1200px; /* Ancho máximo deseado */
+  margin: 30px auto; /* Centrado horizontal con margen vertical */
+  padding: 20px;
+  background-color: #120116;
+}
+
+/* Contenedor para el bloque de texto */
+.staff-admin .admin-text {
+  flex: 1; /* Ocupa el espacio disponible */
+}
+
+/* Estilos para el título */
+.staff-admin .admin-text h1 {
+  font-size: 2.5rem;
+  color: #950da1;
+  margin-bottom: 0.5em;
+}
+
+/* Estilos para el subtítulo o descripción */
+.staff-admin .admin-text h2 {
+  font-size: 1.2rem;
+  line-height: 1.6;
+  color: #9ec2c2;
+}
+
+/* Contenedor para la imagen */
+.staff-admin .estaff-1 {
+  flex: 1;
+  display: flex; /* Para centrar la imagen internamente */
+  align-items: center;
+  justify-content: center;
+  padding: 10px;
+}
+
+/* Estilos para la imagen interna */
+.staff-admin .estaff-1 img {
+  max-width: 100%; /* Ajusta la imagen al ancho del contenedor */
+  height: auto;
+  border-radius: 8px; /* Bordes redondeados (opcional) */
+}
+
+/* Responsividad: apilar verticalmente en dispositivos pequeños */
+@media (max-width: 768px) {
+  .staff-admin {
+    flex-direction: column;
+    text-align: center;
+  }
+
+  .staff-admin .estaff-1 {
+    margin-top: 20px;
+  }
+}
+
+/* Contenedor principal usando CSS Grid para 3 columnas */
+.staff-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 40px; /* Espacio entre contenedores */
+  max-width: 1200px;
+  margin: 0 auto;
+  padding: 20px;
+}
+
+/* Estilos base para cada contenedor del staff */
+.staff-member {
+  position: relative;
+  background: #01034d;
+  padding: 20px;
+  border-radius: 10px;
+  text-align: center;
+  overflow: hidden;
+  box-shadow: 2px 4px 2px 4px rgba(241, 60, 226, 0.1);
+  transition: transform 0.3s ease;
+}
+
+/* Efecto hover: elevación y activación del halo animado */
+.staff-member:hover {
+  transform: translateY(-7px);
+}
+
+/* Pseudo-elemento para el halo animado */
+.staff-member::before {
+  content: "";
+  position: absolute;
+  top: -2px;
+  left: -2px;
+  right: -2px;
+  bottom: -2px;
+  border-radius: inherit;
+  background: conic-gradient(
+    from 0deg,
+    #dc3545,
+    #ffc107,
+    #28a745,
+    #007bff,
+    #dc3545
+  )
+  z-index: -1;
+  filter: blur(4px);
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.staff-member:hover::before {
+  opacity: 1;
+  animation: rotateHalo 2s linear infinite;
+}
+
+@keyframes rotateHalo {
+  from {
+    transform: rotate(0deg);
+  }
+  to {
+    transform: rotate(360deg);
+  }
+}
+
+/* Estilos para la imagen */
+.staff-member img {
+  width: 100%;
+  height: auto;
+  border-radius: 8px;
+  margin-bottom: 15px;
+}
+
+/* Estilos para el nombre y descripción */
+.staff-member h3 {
+  font-size: 1.4rem;
+  color: #079696be;
+  margin-bottom: 10px;
+}
+
+.staff-member p {
+  font-size: 1rem;
+  color: #e9d0d0;
+  line-height: 1.5;
+}
+
+/* Responsivo: Para pantallas más pequeñas, se ajusta a 2 columnas */
+@media (max-width: 768px) {
+  .staff-container {
+    grid-template-columns: repeat(2, 1fr);
+  }
+}
+
+@media (max-width: 480px) {
+  .staff-container {
+    grid-template-columns: 1fr;
+  }
+}
+/* Contenedor que centra y realza la imagen */
+.estaff {
+  display: flex; /* Alinea el contenido de forma flexible */
+  justify-content: center; /* Centra horizontalmente */
+  align-items: center; /* Centra verticalmente */
+  width: 100%; /* Ocupa todo el ancho posible */
+  max-width: 800px; /* Limita el ancho máximo para que no se extienda demasiado */
+  margin: 20px auto; /* Centra el contenedor en la página y agrega espacio vertical */
+  padding: 10px;
+  background-color: #380252; /* Fondo blanco para destacar la imagen */
+  border: 1px solid #ddd; /* Borde sutil */
+  border-radius: 10px; /* Bordes curvos */
+  box-shadow: 3px 4px 3px 4px rgba(202, 9, 228, 0.507); /* Sombra para dar profundidad */
+}
+
+/* Imagen dentro del contenedor */
+.estaff img {
+  width: 100%; /* La imagen ocupa el 100% del ancho del contenedor */
+  height: auto; /* Mantiene la proporción original de la imagen */
+  border-radius: 8px; /* Opcional: redondea ligeramente los bordes de la imagen */
+  object-fit: cover; /* En caso de que la imagen deba ajustarse */
+}
+/* Estilos para el contenedor principal del formulario */
+.container {
+  margin: 100px auto;
+  max-width: 600px; /* Limita el ancho para evitar formularios demasiado extendidos */
+  padding: 20px;
+  background-color: #f9f9f9;
+  border-radius: 8px;
+  box-shadow: 0 4px 10px rgba(0, 0, 0, 0.1);
+}
+
+/* Estilos para centrar el contenido en la fila */
+.row {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+}
+
+/* Estilos para el bloque del formulario */
+.col-6.offset-3 {
+  width: 100%;
+}
+
+/* Encabezado del formulario */
+.col-6.offset-3 h4 {
+  text-align: center;
+  margin-bottom: 20px;
+  font-size: 1.8rem;
+  color: #333;
+}
+
+/* Espaciado entre elementos del formulario */
+.mb-3 {
+  margin-bottom: 15px;
+}
+
+/* Estilo base para los inputs, similar a Bootstrap */
+.form-control {
+  display: block;
+  width: 100%;
+  padding: 10px 15px;
+  font-size: 1rem;
+  line-height: 1.5;
+  color: #495057;
+  background-color: #fff;
+  border: 1px solid #ced4da;
+  border-radius: 0.25rem;
+  transition: border-color 0.15s ease-in-out, box-shadow 0.15s ease-in-out;
+}
+
+.form-control:focus {
+  color: #495057;
+  background-color: #fff;
+  border-color: #80bdff;
+  outline: none;
+  box-shadow: 0 0 0 0.2rem rgba(0, 123, 255, 0.25);
+}
+
+/* Estilo para el botón primario */
+.btn-primary {
+  display: inline-block;
+  font-weight: 400;
+  color: #fff;
+  text-align: center;
+  vertical-align: middle;
+  background-color: #007bff;
+  border: 1px solid #007bff;
+  padding: 0.375rem 0.75rem;
+  font-size: 1rem;
+  line-height: 1.5;
+  border-radius: 0.25rem;
+  transition: background-color 0.15s ease-in-out, border-color 0.15s ease-in-out;
+  cursor: pointer;
+}
+
+/* Cambio de color al pasar el cursor */
+.btn-primary:hover {
+  background-color: #0069d9;
+  border-color: #0062cc;
 }

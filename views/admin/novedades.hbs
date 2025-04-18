@@ -1,16 +1,99 @@
-<div>
+<div class="novedades-1">
+  <!-- Cabecera con bienvenida y enlace de logout -->
   <h2>Bienvenido, {{usuario}}</h2>
   <p>Esta es la sección de novedades.</p>
   <a href="/admin/login/logout">Cerrar sesión</a>
-
-  <!-- File: views/novedades.hbs -->
-<div class="video-container">
-  <video width="640" height="360" controls autoplay loop muted>
-    <source src="/image/login/seba.mp4" type="video/mp4">
-    <!-- Agrega más formatos si es necesario -->
-    Tu navegador no soporta el elemento de video.
-  </video>
+  
+  <!-- Sección "Nuevo" con listado de novedades y botón para mostrar el formulario -->
+  <div class="now">
+    <div class="col-7">
+      <h3>Listado de Novedades</h3>
+    </div>
+    <div class="col-5-text-end">
+      <!-- Botón "Nuevo": al hacer clic se alterna la visibilidad del formulario -->
+      <a class="btn btn-success" href="#" id="btn-nuevo">
+        <i class="fa fa-plus" aria-hidden="true"></i> Nuevo
+      </a>
+    </div>
+  </div>
+  
+  <!-- Tabla de novedades -->
+  <div class="row">
+    <div class="col">
+      <table class="table">
+        <thead>
+          <tr class="table-dark">
+            <th scope="col">#</th>
+            <th scope="col">Desarrollo Web</th>
+            <th scope="col">Valor-USD</th>
+            <th scope="col">Consulta</th>
+            <th class="text-end">Acciones</th>
+          </tr>
+        </thead>
+        <tbody>
+          {{#each novedades}}
+          <tr>
+            <th scope="row">{{this.id}}</th>
+            <td>{{this.Titulo}}</td>
+            <!-- Se usa 'lookup' para acceder a la propiedad "Valor-USD" -->
+            <td>{{lookup this "Valor-USD"}}</td>
+            <td>{{this.Consulta}}</td>
+            <td class="text-end">
+              <a class="btn btn-secondary" href="/admin/novedades/modificar/{{this.id}}">
+                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+              </a>
+              <a class="btn btn-secondary" href="/admin/novedades/delete/{{this.id}}">
+                <i class="fa fa-trash" aria-hidden="true"></i>
+              </a>
+            </td>
+          </tr>
+          {{/each}}
+        </tbody>
+      </table>
+    </div>
+  </div>
+  
+  <!-- Contenedor del formulario "Agregar" (inicialmente oculto) -->
+  <div id="form-agregar" style="display: none;">
+    <div class="container" style="margin: 100px auto;">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <h4>Agregar una nueva novedad</h4>
+          <form action="/admin/novedades/agregar" method="post">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Titulo" name="Titulo">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Valor-USD" name="Valor-USD">
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Consulta" name="Consulta">
+            </div>
+            <button type="submit" class="btn btn-primary">Guardar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
+  
+  <!-- Script para alternar la visualización del formulario -->
+  <script>
+    document.getElementById('btn-nuevo').addEventListener('click', function(e) {
+      e.preventDefault();
+      var formDiv = document.getElementById('form-agregar');
+      if (formDiv.style.display === 'none' || formDiv.style.display === '') {
+        formDiv.style.display = 'block';
+      } else {
+        formDiv.style.display = 'none';
+      }
+    });
+  </script>
+  
+  <!-- Contenedor del video -->
+  <div class="video-container">
+    <video width="640" height="360" controls autoplay loop muted>
+      <source src="/image/login/seba.mp4" type="video/mp4">
+      Tu navegador no soporta el elemento de video.
+    </video>
+  </div>
 </div>
-
-</div>
-
