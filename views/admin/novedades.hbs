@@ -10,7 +10,7 @@
       <h3>Listado de Novedades</h3>
     </div>
     <div class="col-5-text-end">
-      <!-- Botón "Nuevo": al hacer clic se alterna la visibilidad del formulario -->
+      <!-- Botón "Nuevo" para mostrar el formulario de agregar (ya existente) -->
       <a class="btn btn-success" href="#" id="btn-nuevo">
         <i class="fa fa-plus" aria-hidden="true"></i> Nuevo
       </a>
@@ -39,11 +39,17 @@
             <td>{{lookup this "Valor-USD"}}</td>
             <td>{{this.Consulta}}</td>
             <td class="text-end">
-              <a class="btn btn-secondary" href="/admin/novedades/modificar/{{this.id}}">
-                <i class="fa fa-pencil-alt" aria-hidden="true"></i>
+              <!-- Botón de Editar con datos embebidos -->
+              <a class="btn btn-secondary btn-editar" 
+                 href="#"
+                 data-id="{{this.id}}"
+                 data-titulo="{{this.Titulo}}"
+                 data-valor="{{lookup this 'Valor-USD'}}"
+                 data-consulta="{{this.Consulta}}">
+                <i class="fa fa-pencil-alt" aria-hidden="true"></i> Editar
               </a>
               <a class="btn btn-secondary" href="/admin/novedades/delete/{{this.id}}">
-                <i class="fa fa-trash" aria-hidden="true"></i>
+                <i class="fa fa-trash" aria-hidden="true"></i> Eliminar
               </a>
             </td>
           </tr>
@@ -53,7 +59,7 @@
     </div>
   </div>
   
-  <!-- Contenedor del formulario "Agregar" (inicialmente oculto) -->
+  <!-- Contenedor del formulario "Agregar" (ya existente, oculto por defecto) -->
   <div id="form-agregar" style="display: none;">
     <div class="container" style="margin: 100px auto;">
       <div class="row">
@@ -75,17 +81,75 @@
       </div>
     </div>
   </div>
+
+  <!-- Contenedor para el formulario de Modificar (oculto por defecto) -->
+  <div id="form-modificar" style="display: none;">
+    <div class="container" style="margin: 100px auto;">
+      <div class="row">
+        <div class="col-6 offset-3">
+          <h4>Modificar Una Novedad</h4>
+          <!-- El action se definirá dinámicamente con el id de la novedad -->
+          <form id="form-modificar-novedad" action="" method="post">
+            <!-- Campo oculto para el ID (opcional, pues también se puede pasar en la URL) -->
+            <input type="hidden" name="id" id="modificar-id">
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Titulo" name="Titulo" id="modificar-titulo" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Valor-USD" name="Valor-USD" id="modificar-valor" required>
+            </div>
+            <div class="mb-3">
+              <input type="text" class="form-control" placeholder="Consulta" name="Consulta" id="modificar-consulta" required>
+            </div>
+            <button type="submit" class="btn btn-primary">Modificar</button>
+            <button type="button" class="btn btn-secondary" id="cancel-modificar">Cancelar</button>
+          </form>
+        </div>
+      </div>
+    </div>
+  </div>
   
-  <!-- Script para alternar la visualización del formulario -->
+  <!-- Script para alternar formularios y rellenar el de modificación -->
   <script>
+    // Mostrar u ocultar el formulario "Agregar"
     document.getElementById('btn-nuevo').addEventListener('click', function(e) {
       e.preventDefault();
       var formDiv = document.getElementById('form-agregar');
-      if (formDiv.style.display === 'none' || formDiv.style.display === '') {
-        formDiv.style.display = 'block';
-      } else {
-        formDiv.style.display = 'none';
-      }
+      formDiv.style.display = (formDiv.style.display === 'none' || formDiv.style.display === '') ? 'block' : 'none';
+    });
+    
+    // Agregar evento a cada botón de "Editar"
+    document.querySelectorAll('.btn-editar').forEach(function(btn) {
+      btn.addEventListener('click', function(e) {
+        e.preventDefault();
+        // Ocultar formulario "Agregar" si está visible
+        document.getElementById('form-agregar').style.display = 'none';
+
+        // Obtener datos de la novedad desde los atributos data-
+        var id = this.getAttribute('data-id');
+        var titulo = this.getAttribute('data-titulo');
+        var valor = this.getAttribute('data-valor');
+        var consulta = this.getAttribute('data-consulta');
+
+        // Rellenar los campos del formulario de modificación
+        document.getElementById('modificar-id').value = id;
+        document.getElementById('modificar-titulo').value = titulo;
+        document.getElementById('modificar-valor').value = valor;
+        document.getElementById('modificar-consulta').value = consulta;
+        
+        // Actualizar el atributo action del formulario de modificación
+        // Por ejemplo, enviamos la modificación a: /admin/novedades/modificar/<id>
+        document.getElementById('form-modificar-novedad').action = '/admin/novedades/modificar/' + id;
+        
+        // Mostrar el formulario de modificación
+        document.getElementById('form-modificar').style.display = 'block';
+      });
+    });
+    
+    // Evento "Cancelar" para ocultar el formulario de modificación
+    document.getElementById('cancel-modificar').addEventListener('click', function(e) {
+      e.preventDefault();
+      document.getElementById('form-modificar').style.display = 'none';
     });
   </script>
   
@@ -97,3 +161,4 @@
     </video>
   </div>
 </div>
+
